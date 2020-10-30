@@ -1,214 +1,36 @@
-name: ww_tf
+# The python packages necessary to run ProjectZeroWaste > WaterWaste (ww)
+#
+# Install: conda env create -f environment.yml
+# Update:  conda env update -f environment.yml --prune
+# Remove: conda env remove -n ww
+
+name: ww
+# in order of priority: lowest (top) to highest (bottom)
 channels:
   - conda-forge
-  - defaults
+  - default
 dependencies:
-  - _libgcc_mutex=0.1=main
-  - ca-certificates=2020.4.5.1=hecc5488_0
-  - certifi=2020.4.5.1=py36h9f0ad1d_0
-  - cython=0.29.17=py36h831f99a_0
-  - ld_impl_linux-64=2.33.1=h53a641e_7
-  - libblas=3.8.0=17_openblas
-  - libcblas=3.8.0=17_openblas
-  - libedit=3.1.20181209=hc058e9b_0
-  - libffi=3.2.1=hd88cf55_4
-  - libgcc-ng=9.1.0=hdf63c60_0
-  - libgfortran-ng=7.5.0=hdf63c60_15
-  - liblapack=3.8.0=17_openblas
-  - libopenblas=0.3.10=pthreads_hb3c22a3_4
-  - libstdcxx-ng=9.1.0=hdf63c60_0
-  - ncurses=6.2=he6710b0_1
-  - numpy=1.18.4=py36h7314795_0
-  - openssl=1.1.1g=h516909a_0
-  - pip=20.0.2=py36_1
-  - pybind11=2.5.0=py36hdb11119_0
-  - python=3.6.10=hcf32534_1
-  - python_abi=3.6=1_cp36m
-  - readline=8.0=h7b6447c_0
-  - setuptools=46.1.3=py36_0
-  - sqlite=3.31.1=h62c20be_1
-  - tk=8.6.8=hbc83047_0
-  - wheel=0.34.2=py36_0
-  - xz=5.2.5=h7b6447c_0
-  - zlib=1.2.11=h7b6447c_3
+  - python==3.6.10 # the latest python release running on dev machine
+  - cython # wrapping Python around C. C is fast.
+  - pillow==7.2.0 # classic fork of Python Imaging Library 
+  - numpy==1.18.4 # essential math and matrix operations
+  - tensorflow==1.15.0 # or tensorflow-gpu if you have a GPU
+  - tensorboard==1.15.0
+  - keras==2.2.4 # deep learning library (keras==2.2.4)
+  - keras-applications==1.0.8 # pre-trained weights architectures for VGG* ResNet*
+  - keras-preprocessing # data preprocessing and data augmentation module (1.1.2)
+  - pandas==1.1.2 # working with tabulated data  
+  - pip # THE python package manager
+  - matplotlib==3.2.1 # classic plotting  
+  - scikit-image==0.16.2 # image processing https://scikit-image.org/docs/stable/install.html
+  - imageio=2.9.0
+  - tqdm # popular progress bar for jupyter
+  - scipy==1.3.0 # numerical methods
+  - jupyter # great tool for any python project.
+  - nb_conda_kernels
+  - ipykernel
+  - requests
   - pip:
-    - aiohttp==3.6.3
-    - aiohttp-cors==0.7.0
-    - aioredis==1.3.1
-    - apache-beam==2.24.0
-    - argon2-cffi==20.1.0
-    - ase==3.20.1
-    - astroid==2.4.2
-    - astunparse==1.6.3
-    - async-generator==1.10
-    - async-timeout==3.0.1
-    - attrs==20.2.0
-    - autopep8==1.5.4
-    - avro-python3==1.10.0
-    - beautifulsoup4==4.9.3
-    - bleach==3.2.1
-    - blessings==1.7
-    - cachetools==4.1.1
-    - cffi==1.14.3
-    - chardet==3.0.4
-    - click==7.1.2
-    - colorama==0.4.4
-    - colorful==0.5.4
-    - contextlib2==0.6.0.post1
-    - contextvars==2.4
-    - crcmod==1.7
-    - dataclasses==0.7
-    - defusedxml==0.6.0
-    - dill==0.3.1.1
-    - dm-tree==0.1.5
-    - docopt==0.6.2
-    - easydict==1.9
-    - entrypoints==0.3
-    - fastavro==0.23.6
-    - filelock==3.0.12
-    - funcy==1.15
-    - future==0.18.2
-    - gast==0.2.2
-    - gin-config==0.3.0
-    - glumpy==1.1.0
-    - google==3.0.0
-    - google-api-core==1.22.4
-    - google-api-python-client==1.12.3
-    - google-auth==1.22.1
-    - google-auth-httplib2==0.0.4
-    - google-auth-oauthlib==0.4.1
-    - google-cloud-bigquery==2.2.0
-    - google-cloud-core==1.4.3
-    - google-crc32c==1.0.0
-    - google-pasta==0.2.0
-    - google-resumable-media==1.1.0
-    - googleapis-common-protos==1.52.0
-    - googledrivedownloader==0.4
-    - gpustat==0.6.0
-    - hdfs==2.5.8
-    - hiredis==1.1.0
-    - httplib2==0.17.4
-    - humanfriendly==8.2
-    - idna==2.10
-    - idna-ssl==1.1.0
-    - image-slicer==2.1.1
-    - imageio==2.9.0
-    - imageio-ffmpeg==0.4.2
-    - immutables==0.14
-    - importlib-resources==3.0.0
-    - ipywidgets==7.5.1
-    - isodate==0.6.0
-    - isort==5.5.1
-    - jinja2==2.11.2
-    - joblib==0.16.0
-    - jsonpickle==1.4.1
-    - jsonschema==3.2.0
-    - jupyterlab-pygments==0.1.2
-    - kaggle==1.5.8
-    - keras==2.2.4
-    - keras-applications==1.0.8
-    - keras-preprocessing==1.1.2
-    - lazy-object-proxy==1.4.3
-    - llvmlite==0.34.0
-    - lxml==4.6.1
-    - markupsafe==1.1.1
-    - matplotlib==3.2.1
-    - mccabe==0.6.1
-    - mistune==0.8.4
-    - mock==2.0.0
-    - moviepy==1.0.3
-    - msgpack==1.0.0
-    - multidict==4.7.6
-    - nbclient==0.5.0
-    - nbconvert==6.0.6
-    - nbformat==5.0.7
-    - nest-asyncio==1.4.1
-    - notebook==6.1.4
-    - numba==0.51.2
-    - nvidia-ml-py3==7.352.0
-    - oauth2client==3.0.0
-    - oauthlib==3.1.0
-    - object-detection==0.1
-    - open3d-python==0.7.0.0
-    - opencensus==0.7.11
-    - opencensus-context==0.1.2
-    - opencv-contrib-python==3.4.3.18
     - opencv-python==3.4.3.18
-    - opencv-python-headless==4.4.0.44
-    - opt-einsum==3.3.0
-    - packaging==20.4
-    - pandas==1.1.2
-    - pandocfilters==1.4.2
-    - pbr==5.5.1
-    - pillow==7.2.0
-    - proglog==0.1.9
-    - prometheus-client==0.8.0
-    - promise==2.3
-    - proto-plus==1.11.0
-    - psutil==5.7.2
-    - py-cpuinfo==7.0.0
-    - py-spy==0.3.3
-    - pyarrow==0.17.1
-    - pyasn1==0.4.8
-    - pyasn1-modules==0.2.8
-    - pybullet==2.7.5
-    - pycocotools==2.0.2
-    - pycodestyle==2.6.0
-    - pycparser==2.20
-    - pydot==1.4.1
-    - pylint==2.6.0
-    - pymongo==3.11.0
-    - pyopengl==3.1.5
-    - pypng==0.0.20
-    - pyrsistent==0.17.3
-    - python-slugify==4.0.1
-    - ray==1.0.0
-    - rdflib==5.0.0
-    - redis==3.4.1
-    - requests==2.24.0
-    - requests-oauthlib==1.3.0
-    - rsa==4.6
-    - ruamel-yaml==0.15.89
-    - scikit-image==0.16.2
-    - scikit-learn==0.23.2
-    - scipy==1.3.0
-    - send2trash==1.5.0
-    - sentencepiece==0.1.91
-    - slugify==0.0.1
-    - soupsieve==2.0.1
-    - tensorboard==1.15.0
-    - tensorboard-plugin-wit==1.7.0
-    - tensorflow==1.15.0
-    - tensorflow-addons==0.11.2
-    - tensorflow-datasets==4.0.1
-    - tensorflow-estimator==1.15.1
-    - tensorflow-hub==0.9.0
-    - tensorflow-metadata==0.24.0
-    - tensorflow-model-optimization==0.5.0
-    - terminado==0.9.1
-    - testpath==0.4.4
-    - text-unidecode==1.3
-    - tf-models-official==2.3.0
-    - tf-slim==1.1.0
-    - threadpoolctl==2.1.0
-    - toml==0.10.1
-    - torch==1.5.1
-    - torch-cluster==1.5.7
-    - torch-geometric==1.6.1
-    - torch-scatter==2.0.5
-    - torch-sparse==0.6.7
-    - torch-spline-conv==1.2.0
-    - torchvision==0.6.1
-    - tqdm==4.19.9
-    - triangle==20200424
-    - trimesh==3.6.35
-    - typed-ast==1.4.1
-    - typeguard==2.10.0
-    - typing-extensions==3.7.4.3
-    - uritemplate==3.0.1
-    - urllib3==1.25.10
-    - webencodings==0.5.1
-    - widgetsnbextension==3.5.1
-    - wrapt==1.12.1
-    - yarl==1.5.1
-
+    - argparse
+    - pylint  # vscode
