@@ -70,7 +70,7 @@ class Detector:
                 
         return detection_results
 
-    def predict(self, image):
+    def predict(self, image, img_names):
         batch = 0 # only using batch size of one
         np_im = np.asarray(image, np.uint8)
         (boxes, scores, classes) = self.sess.run([self.boxes, self.scores, self.classes],
@@ -79,4 +79,5 @@ class Detector:
         detection_results = self.process_boxes(boxes[batch], classes[batch], scores[batch])
 
         # log_prediction_json image_detection_results
-        return {'detections':detection_results}
+        return {'file_name': img_names,
+                'detections':detection_results}

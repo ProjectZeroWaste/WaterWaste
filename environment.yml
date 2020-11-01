@@ -14,7 +14,7 @@ dependencies:
   - cython # wrapping Python around C. C is fast.
   - pillow==7.2.0 # classic fork of Python Imaging Library 
   - numpy==1.18.4 # essential math and matrix operations
-  - tensorflow==1.15.0 # or tensorflow-gpu if you have a GPU
+  - tensorflow-gpu==1.15.0 # or tensorflow-gpu if you have a GPU
   - tensorboard==1.15.0
   - keras==2.2.4 # deep learning library (keras==2.2.4)
   - keras-applications==1.0.8 # pre-trained weights architectures for VGG* ResNet*
