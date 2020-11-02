@@ -29,6 +29,52 @@ The use of generating syntehtics data enables an agile and iterative approach to
 
 
 
+## Installation 
+
+The Andaconda python package manager is utilized for managing our python libraries. Note, on first install make sure to confirm conda to the `.bashrc` for the python interpret to activate in the shell.
+
+The dependencies have been tested on Ubuntu 18.04 on Python 3.6+ refer to the `environment.yml` file for details. The install the dependencies run the following:
+
+```
+conda env create -f environment.yml --name ww
+conda activate ww
+```
+
+
+
+
+### Inital Setup
+
+1. Clone this repository ([git installation required](https://git-scm.com/))
+   ```
+   cd $HOME # or another directory for this project/repo
+   git clone https://github.com/ProjectZeroWaste/WaterWaste.git
+   cd WaterWaste
+   ```
+2. Install environment with [Anaconda](https://www.continuum.io/downloads): 
+   
+   ```
+   conda env create -f environment.yml
+   conda activate ww
+   
+   ## if using Jupyter Notebooks create custom jupyter kernel for WaterWaste
+   python -m ipykernel install --user --name=ww
+   ```
+    In the `environment.yml` file, change Tensorflow installation from `tensorflow-gpu` to `tensorflow` if planning to run only on CPU (e.g., GPU is not available).
+    _Refer here for additional steps on [setting up anaconda python environment](https://conda.io/docs/using/envs.html#managing-environments)_
+
+3. Install tensorflow object detection API + visualizaiton tools
+
+  ```
+  # Clone the tensorflow models repository
+  cd $HOME
+  git clone --depth 1 https://github.com/tensorflow/models
+
+  sudo apt install -y protobuf-compiler
+  cd models/research/
+  protoc object_detection/protos/*.proto --python_out=.
+  python -m pip install .
+  ```
 
 ## National Waste Policy Action Plan - 2019 
 
