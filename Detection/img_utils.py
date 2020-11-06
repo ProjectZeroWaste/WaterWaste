@@ -6,7 +6,8 @@ import glob
 
 def list_imgs_subdir(img_dir):
     """Recursively List all images from all subdirectories"""
-    return glob.glob(os.path.join(img_dir, '**', '*.jpg*'), recursive=True)
+    #return glob.glob(os.path.join(img_dir, '**', '*.jpg*'), recursive=True)
+    return glob.glob(os.path.join(img_dir, '**', '*.JPG*'), recursive=True)
 
 def list_imgs_onedir(img_dir):
     """(no recusive) List all images from ONE subdirectories"""

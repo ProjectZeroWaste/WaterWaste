@@ -1,5 +1,4 @@
 
-
 def load_label_map(LABEL_PATH, NUM_CLASSES):
     from object_detection.utils import label_map_util
 
@@ -34,5 +33,3 @@ class DetectorCFG:
     detection_confidence = 0.1
     detector_box_confidence = 0.1
     label_id_name, label_name_id = load_label_map2(DEFAULT_DETECTOR_LABELMAP)
-    #labelmap_to_id = {0: 'empty', 1: 'Trash'}
-    #id_to_labelmap = {'empty': 0, 'Trash': 1}

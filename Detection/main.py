@@ -14,6 +14,9 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
+#EXPANSION = 3 # Default
+EXPANSION = 200
+
 def main(args):
     cropped_path = os.path.join(args.output_dir,'cropped')
     if not os.path.exists(cropped_path):
@@ -43,7 +46,7 @@ def main(args):
         # Create Crop Images
         print("predictions complete.")
         print("Starting Cropping Images.")
-        img_cropped_list = img_utils.crop_image(result['detections'], image, expansion=3)
+        img_cropped_list = img_utils.crop_image(result['detections'], image, expansion=EXPANSION)
         for ix, img_cropped in enumerate(img_cropped_list):
             img_crop_path, crop_output_image_list = img_utils.set_output_filename(img_names, 
                                                             crop_index=ix, 
@@ -79,8 +82,11 @@ if __name__ == '__main__':
     from argparse import Namespace
     args = Namespace(
         #image_dir =  '/home/redne/ZeroWaste3D/Detection/tf/detect_and_crop/utils/dev/images/original/',
-        image_dir = '/home/redne/WaterWaste/test_images/s/original_02/',
-        output_dir='/home/redne/WaterWaste/test_images/output_02/'
+        #image_dir = '/home/redne/WaterWaste/test_images/s/original_02/',
+        #output_dir='/home/redne/WaterWaste/test_images/output_02/'
+
+        image_dir = '/mnt/omreast_users/phhale/csiro_trashnet/original_samples/Validation_v0/high_res_validation_set/',
+        output_dir='/home/redne/WaterWaste/test_images/high_res_val_set_01/'
     )
 
     if not os.path.exists(args.output_dir):
