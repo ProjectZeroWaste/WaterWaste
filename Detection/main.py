@@ -4,18 +4,22 @@ import logging
 from tqdm import tqdm
 
 from detector import Detector
-from dataset_config import DetectorCFG
+#from dataset_config import DetectorCFG
+from dataset_config_ds2_storm import DetectorCFG
 import viz_utils
 import img_utils
-
+from create_gif import gif_creator
+import numpy as np
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
-#EXPANSION = 3 # Default
-EXPANSION = 200
+EXPANSION = 3 # Default
+
+CONFIDENCE=0.7 #standard
+#CONFIDENCE=0.45
 
 def main(args):
     cropped_path = os.path.join(args.output_dir,'cropped')
@@ -34,6 +38,9 @@ def main(args):
     bbox_output_image_list = {}
 
     image_list = img_utils.list_imgs_subdir(args.image_dir)
+
+    #image_list = np.choose(image_list, 90)
+    
     #for batch, names in tqdm(iterator):
     for img_names in tqdm(image_list):
         image = img_utils.read_image(img_names)
@@ -42,7 +49,7 @@ def main(args):
         result = tf_detector.predict(image, img_names)
         detection_results.append(result)
 
-        
+        """
         # Create Crop Images
         print("predictions complete.")
         print("Starting Cropping Images.")
@@ -53,12 +60,12 @@ def main(args):
                                                             output_image_list=crop_output_image_list, 
                                                             output_dir=cropped_path)
             img_cropped.save(img_crop_path)
-        
+        """
         print("Creating BBOX for Original Image.")
         # Create BBOX
         viz_utils.render_detection_bounding_boxes(result['detections'], image, 
                                                   label_map=labelmap,
-                                                  confidence_threshold=0.7)
+                                                  confidence_threshold=CONFIDENCE)
         bbox_img_path, bbox_output_image_list = img_utils.set_output_filename(img_names, 
                                                         output_image_list=bbox_output_image_list, 
                                                         output_dir=bbox_path)
@@ -71,7 +78,7 @@ def main(args):
         json.dump(detection_results, f, indent=1)
     print('Output file saved at {}'.format(output_detector_file_results))
 
-
+    gif_creator('ssd_r50_fpn_ds2s_SynReal_111720_step25k_Valv0')
 
 if __name__ == '__main__':
 
@@ -81,12 +88,8 @@ if __name__ == '__main__':
 
     from argparse import Namespace
     args = Namespace(
-        #image_dir =  '/home/redne/ZeroWaste3D/Detection/tf/detect_and_crop/utils/dev/images/original/',
-        #image_dir = '/home/redne/WaterWaste/test_images/s/original_02/',
-        #output_dir='/home/redne/WaterWaste/test_images/output_02/'
-
-        image_dir = '/mnt/omreast_users/phhale/csiro_trashnet/original_samples/Validation_v0/high_res_validation_set/',
-        output_dir='/home/redne/WaterWaste/test_images/high_res_val_set_01/'
+        image_dir = '/mnt/omreast_users/phhale/csiro_trashnet/original_samples/Validation_v0/high_res_validation_set/',    #.JPG - img_util
+        output_dir='/home/redne/WaterWaste/test_images/ssd_r50_fpn_ds2s_SynReal_111720_step25k_Valv0/'
     )
 
     if not os.path.exists(args.output_dir):
