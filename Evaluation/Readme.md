@@ -25,7 +25,7 @@ For the Synth50/Real50 model appeared to have higher precision and recall on the
 ![](frcnn_ds2s_Syn50Rea50_111720_step16k_val0_heatmap.png)
 
 
-Please refer to `Notebooks/confusion_matrix_eval.ipynb` for additional details. 
+Please refer to `confusion_matrix_eval.ipynb` for additional details. 
 
 ----
 # Demo
